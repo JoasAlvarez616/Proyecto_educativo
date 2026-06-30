@@ -12,20 +12,31 @@ import { crearFondoEstrellas, crearNebulosa, crearIluminacion } from './entorno.
 // 1. ESCENA, CÁMARA, RENDER
 // ==========================================
 const contenedor = document.getElementById('canvas-container');
+if (!contenedor) {
+    console.error('❌ Contenedor no encontrado');
+}
+
 const escena = new THREE.Scene();
 escena.background = new THREE.Color(0x050510);
 
 const camara = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 500);
 camara.position.set(18, 12, 35);
 
-const renderizador = new THREE.WebGLRenderer({ antialias: true });
+const renderizador = new THREE.WebGLRenderer({ 
+    antialias: true,
+    powerPreference: "high-performance"  // 🔥 Mejor rendimiento
+});
 renderizador.setSize(window.innerWidth, window.innerHeight);
 renderizador.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderizador.shadowMap.enabled = true;
 renderizador.shadowMap.type = THREE.PCFSoftShadowMap;
 renderizador.toneMapping = THREE.ACESFilmicToneMapping;
-renderizador.toneMappingExposure = 1.3; // ← SUBIDO (antes 1.0)
-contenedor.appendChild(renderizador.domElement);
+renderizador.toneMappingExposure = 1.3;
+
+if (contenedor) {
+    contenedor.appendChild(renderizador.domElement);
+    console.log('✅ Renderizador añadido al contenedor');
+}
 
 // ==========================================
 // 2. EFFECT COMPOSER (BLOOM)
@@ -35,9 +46,9 @@ composer.addPass(new RenderPass(escena, camara));
 
 const bloomPass = new UnrealBloomPass(
     new THREE.Vector2(window.innerWidth, window.innerHeight),
-    1.0,   // ← AJUSTADO (antes 1.2)
+    1.0,
     0.25,
-    0.85   // ← AJUSTADO (antes 0.88)
+    0.85
 );
 composer.addPass(bloomPass);
 
@@ -61,7 +72,11 @@ crearNebulosa(escena);
 // ==========================================
 // 5. CREAR SISTEMA SOLAR
 // ==========================================
-crearSistemaSolar(escena);
+try {
+    crearSistemaSolar(escena);
+} catch (error) {
+    console.warn('⚠️ Error al crear el sistema solar:', error);
+}
 
 // ==========================================
 // 6. DETECCIÓN DE CLICS
@@ -99,6 +114,7 @@ const descripcionEl = document.getElementById('planeta-descripcion');
 const datoCuriosoEl = document.getElementById('planeta-dato-curioso');
 
 function abrirModal(data) {
+    if (!modal || !nombreEl || !descripcionEl || !datoCuriosoEl) return;
     nombreEl.textContent = data.nombre;
     descripcionEl.textContent = data.descripcion;
     datoCuriosoEl.textContent = `✨ Dato curioso: ${data.datoCurioso}`;
@@ -106,30 +122,42 @@ function abrirModal(data) {
 }
 
 function cerrarModal() {
-    modal.classList.add('oculto');
+    if (modal) modal.classList.add('oculto');
 }
 
-btnCerrar.addEventListener('click', cerrarModal);
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) cerrarModal();
-});
+if (btnCerrar) btnCerrar.addEventListener('click', cerrarModal);
+if (modal) {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) cerrarModal();
+    });
+}
 
 // ==========================================
 // 8. CONTROLES DE ZOOM
 // ==========================================
-document.getElementById('btn-zoom-in').addEventListener('click', () => {
-    camara.position.multiplyScalar(0.9);
-});
+const btnZoomIn = document.getElementById('btn-zoom-in');
+const btnZoomOut = document.getElementById('btn-zoom-out');
+const btnReset = document.getElementById('btn-reset');
 
-document.getElementById('btn-zoom-out').addEventListener('click', () => {
-    camara.position.multiplyScalar(1.1);
-});
+if (btnZoomIn) {
+    btnZoomIn.addEventListener('click', () => {
+        camara.position.multiplyScalar(0.9);
+    });
+}
 
-document.getElementById('btn-reset').addEventListener('click', () => {
-    camara.position.set(18, 12, 35);
-    controles.target.set(0, 0, 0);
-    controles.update();
-});
+if (btnZoomOut) {
+    btnZoomOut.addEventListener('click', () => {
+        camara.position.multiplyScalar(1.1);
+    });
+}
+
+if (btnReset) {
+    btnReset.addEventListener('click', () => {
+        camara.position.set(18, 12, 35);
+        controles.target.set(0, 0, 0);
+        controles.update();
+    });
+}
 
 // ==========================================
 // 9. REDIMENSIONAR
@@ -137,23 +165,16 @@ document.getElementById('btn-reset').addEventListener('click', () => {
 window.addEventListener('resize', () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     camara.aspect = width / height;
     camara.updateProjectionMatrix();
-    
+
     renderizador.setSize(width, height);
     composer.setSize(width, height);
 });
 
 // ==========================================
-// 10. BIENVENIDA
-// ==========================================
-document.getElementById('btn-entrar').addEventListener('click', () => {
-    document.getElementById('bienvenida').style.display = 'none';
-});
-
-// ==========================================
-// 11. BUCLE DE ANIMACIÓN
+// 10. BUCLE DE ANIMACIÓN
 // ==========================================
 function animar() {
     requestAnimationFrame(animar);
@@ -163,3 +184,5 @@ function animar() {
 }
 
 animar();
+
+console.log('🚀 Sistema Solar cargado correctamente');

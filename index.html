@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🌍 Aprende Jugando</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Aprende Jugando</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Fondo con estrellas + nebulosa -->
+    <div id="fondo-global">
+        <div class="estrella" style="--delay:0s; --top:10%; --left:20%; --size:2px;"></div>
+        <div class="estrella" style="--delay:2s; --top:25%; --left:70%; --size:3px;"></div>
+        <div class="estrella" style="--delay:4s; --top:50%; --left:15%; --size:1.5px;"></div>
+        <div class="estrella" style="--delay:6s; --top:70%; --left:80%; --size:2.5px;"></div>
+        <div class="estrella" style="--delay:3s; --top:85%; --left:40%; --size:2px;"></div>
+        <div class="estrella" style="--delay:7s; --top:15%; --left:50%; --size:1.8px;"></div>
+        <div class="estrella" style="--delay:1s; --top:40%; --left:90%; --size:2.2px;"></div>
+        <div class="estrella" style="--delay:5s; --top:60%; --left:5%; --size:1.5px;"></div>
+        <div class="estrella" style="--delay:8s; --top:90%; --left:60%; --size:2px;"></div>
+        <div class="estrella" style="--delay:2.5s; --top:5%; --left:85%; --size:1.8px;"></div>
+        <!-- Nebulosa decorativa -->
+        <div class="nebulosa" style="--top:20%; --left:10%; --size:300px; --color: rgba(168,85,247,0.06);"></div>
+        <div class="nebulosa" style="--top:60%; --left:70%; --size:400px; --color: rgba(59,130,246,0.05);"></div>
+    </div>
+
     <div id="menu-principal">
-        <h1>🌍 Aprende Jugando</h1>
-        <p>Elige un tema para explorar</p>
-
-        <div class="grid-temas">
-            <a href="modulos/sistema-solar/index.html" class="tarjeta-tema">
-                <span class="icono">🌞</span>
-                <h2>Sistema Solar</h2>
-                <p>Explora los planetas y aprende sobre el espacio</p>
-            </a>
-
-            <a href="#" class="tarjeta-tema" style="opacity:0.4; pointer-events:none;">
-                <span class="icono">🧬</span>
-                <h2>Células</h2>
-                <p>Próximamente</p>
-            </a>
-
-            <a href="#" class="tarjeta-tema" style="opacity:0.4; pointer-events:none;">
-                <span class="icono">⚛️</span>
-                <h2>Modelos Atómicos</h2>
-                <p>Próximamente</p>
-            </a>
+        <div class="header">
+            <h1>🌌 El <span>Gran Portal</span> del Conocimiento</h1>
+            <p>Elige tu aventura y comienza a explorar</p>
         </div>
 
-        <p class="footer">🚀 Aprende jugando · Proyecto educativo</p>
+        <div class="grid-categorias">
+            <a href="categorias/ciencias/index.html" class="tarjeta-categoria" style="--color: #60a5fa; --glow: rgba(96, 165, 250, 0.3);">
+                <div class="categoria-icono">🔬</div>
+                <div class="categoria-info">
+                    <h3>Ciencias</h3>
+                    <p>Explora el universo, la vida y la materia</p>
+                </div>
+                <div class="categoria-estado">
+                    <span class="badge disponible">3 Temas</span>
+                </div>
+            </a>
+            <div class="tarjeta-categoria" style="--color: #34d399; --glow: rgba(52, 211, 153, 0.3); opacity: 0.5; cursor: default;">
+                <div class="categoria-icono">🗣️</div>
+                <div class="categoria-info">
+                    <h3>Idiomas</h3>
+                    <p>Aprende nuevos idiomas de forma divertida</p>
+                </div>
+                <div class="categoria-estado">
+                    <span class="badge proximamente">🔜 Próximamente</span>
+                </div>
+            </div>
+            <div class="tarjeta-categoria" style="--color: #fbbf24; --glow: rgba(251, 191, 36, 0.3); opacity: 0.5; cursor: default;">
+                <div class="categoria-icono">➗</div>
+                <div class="categoria-info">
+                    <h3>Matemáticas</h3>
+                    <p>Descubre el poder de los números</p>
+                </div>
+                <div class="categoria-estado">
+                    <span class="badge proximamente">🔜 Próximamente</span>
+                </div>
+            </div>
+            <div class="tarjeta-categoria" style="--color: #f472b6; --glow: rgba(244, 114, 182, 0.3); opacity: 0.5; cursor: default;">
+                <div class="categoria-icono">🎨</div>
+                <div class="categoria-info">
+                    <h3>Arte</h3>
+                    <p>Despierta tu creatividad</p>
+                </div>
+                <div class="categoria-estado">
+                    <span class="badge proximamente">🔜 Próximamente</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="footer">🌌 Aprende Jugando · Proyecto educativo interactivo</p>
     </div>
 
 </body>
