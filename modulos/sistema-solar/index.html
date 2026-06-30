@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Solar | Aprende Jugando</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Botón para volver al menú -->
+    <a href="../../index.html" class="btn-volver">← Volver al menú</a>
+
+    <!-- Pantalla de bienvenida -->
+    <div id="bienvenida">
+        <h1>🌞 Sistema Solar</h1>
+        <p>Explora los planetas y aprende sobre ellos</p>
+        <button id="btn-entrar">Comenzar</button>
+    </div>
+
+    <!-- Contenedor 3D -->
+    <div id="canvas-container"></div>
+
+    <!-- Modal de información del planeta -->
+    <div id="modal-planeta" class="oculto">
+        <div class="contenido-modal">
+            <button id="btn-cerrar">✕</button>
+            <h2 id="planeta-nombre"></h2>
+            <p id="planeta-descripcion"></p>
+            <p id="planeta-dato-curioso"></p>
+        </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="controles">
+        <button id="btn-zoom-in">🔍+</button>
+        <button id="btn-zoom-out">🔍−</button>
+        <button id="btn-reset">🏠</button>
+    </div>
+
+    <!-- Three.js -->
+<script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/"
+        }
+    }
+</script>
+
+    <script type="module" src="js/datos.js"></script>
+    <script type="module" src="js/sistema-solar.js"></script>
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

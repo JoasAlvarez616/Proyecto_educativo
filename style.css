@@ -1,0 +1,99 @@
+/* ==========================================
+   MENÚ PRINCIPAL
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at 50% 50%, #0a0a20, #050510);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu-principal {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 900px;
+    width: 100%;
+}
+
+#menu-principal h1 {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    background: linear-gradient(45deg, #fbbf24, #f97316);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#menu-principal > p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+}
+
+.grid-temas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin: 10px 0 40px;
+}
+
+.tarjeta-tema {
+    background: rgba(15, 12, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.tarjeta-tema:hover:not([style*="pointer-events:none"]) {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.tarjeta-tema .icono {
+    font-size: 3.2rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.tarjeta-tema h2 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+}
+
+.tarjeta-tema p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.footer {
+    color: #4a4a6a;
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    #menu-principal h1 {
+        font-size: 2rem;
+    }
+    .grid-temas {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
